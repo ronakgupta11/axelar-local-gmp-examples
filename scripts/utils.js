@@ -25,7 +25,7 @@ async function getGasPrice(env, source, destination, tokenAddress) {
     if(env == 'local') return 1;
     if(env != 'testnet') throw Error('env needs to be "local" or "testnet".');
     const sdk = new AxelarQueryAPI({ environment: Environment.TESTNET});
-    return sdk.estimateGasFee(EvmChain.FANTOM, EvmChain.MOONBEAM, GasToken.FTM);
+    return sdk.estimateGasFee(EvmChain.BINANCE, EvmChain.MOONBEAM, GasToken.BINANCE);
     // const api_url ='https://devnet.api.gmp.axelarscan.io';
 
     // const requester = axios.create({ baseURL: api_url });
