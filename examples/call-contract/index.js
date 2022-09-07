@@ -44,8 +44,10 @@ async function test(chains, wallet, options) {
     const gasLimit = 3e5;
     const gasPrice = await getGasPrice(source, destination, AddressZero);
 
+    console.log("gas price",gasPrice);
+
     const tx = await source.contract.setRemoteValue(destination.name, destination.executableSample, message, {
-        value: BigInt(Math.floor(gasLimit * gasPrice)),
+        value: BigInt(gasPrice),
     });
     await tx.wait();
 
