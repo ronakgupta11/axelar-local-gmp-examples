@@ -24,6 +24,12 @@ async function test(chains, wallet, options) {
     const args = options.args || [];
     const getGasPrice = options.getGasPrice;
 
+    for (const chain of chains) {
+        const provider = getDefaultProvider(chain.rpc);
+        chain.wallet = wallet.connect(provider);
+        chain.contract = new Contract(chain.executableSample, ExecutableSample.abi, chain.wallet);
+    }
+
     const source = chains.find((chain) => chain.name === (args[0] || 'Avalanche'));
     const destination = chains.find((chain) => chain.name === (args[1] || 'Fantom'));
     const message = args[2] || `Hello ${destination.name} from ${source.name}, it is ${new Date().toLocaleTimeString()}.`;

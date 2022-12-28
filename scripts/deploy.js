@@ -6,7 +6,8 @@ const {
     testnetInfo,
 } = require('@axelar-network/axelar-local-dev');
 const { Wallet, getDefaultProvider } = require('ethers');
-
+const { keccak256, defaultAbiCoder } = require('ethers/lib/utils');
+const { GasCostLogger } = require('./gasCosts');
 async function deploy(env, chains, wallet, example) {
     if (example.preDeploy) {
         await example.preDeploy(chains, wallet);
